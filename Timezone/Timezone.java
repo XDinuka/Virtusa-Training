@@ -20,6 +20,8 @@ public class Timezone{
         System.out.print("Enter Second : ");
         int second = Integer.parseInt(scanner.nextLine());
 
+        scanner.close();
+
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month-1);
