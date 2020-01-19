@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Start {
 
@@ -9,37 +9,84 @@ public class Start {
         Scanner s = new Scanner(System.in);
         boolean repeat = true;
         john = new John();
-        while(repeat){
-            System.out.println("What do you want John to do?");
-            System.out.println("1) Enter D to jump a distance.");
-            System.out.println("2) Enter T to jump a for a time.");
-            System.out.println("3) Enter N to get a new frog.");
-            System.out.println("4) Enter anything else to exit.");
-            
-            switch(s.next()){
+        while (repeat) {
+
+            System.out.println("What do you want John to do?\n" +
+                    "1) Enter D to jump a distance.\n" +
+                    "2) Enter T to jump a for a time.\n" +
+                    "3) Enter N to get a new frog.\n" +
+                    "4) Enter anything else to exit.");
+
+
+            switch (getString(s)) {
                 case "D":
                     System.out.println("How far do you want John to go?");
-                    int d = s.nextInt();
+                    int d = getPositiveInteger(s);
                     john.jumpDistance(d);
-                    System.out.println("John has jumped "+john.getDistance()+" meters in "+john.getTime()+" seconds.");
-                break;
+                    System.out.println("John has jumped " + john.getDistance() + " meters in " + john.getTime() + " seconds.");
+                    break;
                 case "T":
                     System.out.println("For how long do you want John to jump?");
-                    int t = s.nextInt();
-                    john.jumpDistance(t);
-                    System.out.println("John has jumped "+john.getDistance()+" meters in "+john.getTime()+" seconds.");
-                break;
+                    int t = getPositiveInteger(s);
+                    john.jumpTime(t);
+                    System.out.println("John has jumped " + john.getDistance() + " meters in " + john.getTime() + " seconds.");
+                    break;
                 case "N":
                     john = new John();
                     System.out.println("Got a new frog named John.");
-                break;
+                    break;
                 default:
-                repeat = false;
-                
-            }
+                    repeat = false;
 
+            }
 
 
         }
     }
+
+    private static int getPositiveInteger(Scanner scanner) {
+        int i = 0;
+
+        try {
+
+            i = Integer.parseInt(scanner.nextLine());
+
+            if (i <= 0)
+                throw new IllegalArgumentException();
+
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a positive integer.");
+            i = getPositiveInteger(scanner);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Please enter a positive integer.");
+            i = getPositiveInteger(scanner);
+        } catch (NoSuchElementException e) {
+            System.out.println("Please enter a positive integer.");
+            i = getPositiveInteger(scanner);
+        } catch (IllegalStateException e) {
+            scanner = new Scanner(System.in);
+            i = getPositiveInteger(scanner);
+        }
+
+        return i;
+    }
+
+    private static String getString(Scanner scanner) {
+        String s = null;
+
+        try {
+            s = scanner.nextLine();
+
+        } catch (NoSuchElementException e) {
+            System.out.println("Please enter a positive integer.");
+            s = getString(scanner);
+        } catch (IllegalStateException e) {
+            scanner = new Scanner(System.in);
+            s = getString(scanner);
+        }
+
+        return s;
+    }
+
+
 }
