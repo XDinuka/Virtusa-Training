@@ -9,8 +9,11 @@ public class ExceptionExample {
         tryCatchExample();
     }
 
-    private static void tryCatchExample() throws ExampleRuntimeException {
+    // using throws to signify that an exception may be thrown 
+    private static void tryCatchExample() throws ExampleRuntimeException{
         Random random = new Random();
+
+        //try catch syntax
         try {
             switch (random.nextInt() % 4) {
                 case 0:
@@ -22,11 +25,13 @@ public class ExceptionExample {
             }
 
         } catch (IllegalArgumentException illegalArgumentException) {
-            throw new ExampleRuntimeException("Some Error Occured", illegalArgumentException);
+            throw new ExampleRuntimeException("Some Error Occured", illegalArgumentException);// Rethrowing
         } catch (RuntimeException runtimeException) {
-            throw new ExampleRuntimeException("Some Error Occured", runtimeException);
+            throw new ExampleRuntimeException("Some Error Occured", runtimeException);// Rethrowing
         } catch (Exception exception) {
-            throw new ExampleRuntimeException("Some Error Occured", exception);
+            throw new ExampleRuntimeException("Some Error Occured", exception);// Rethrowing
+        }finally{
+            System.out.println("Code Executed");
         }
     }
 }
