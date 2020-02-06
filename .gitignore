@@ -1,0 +1,12 @@
+Spring/*/HELP.md
+Spring/*/target/
+Spring/*/!.mvn/wrapper/maven-wrapper.jar
+Spring/*/!**/src/main/**
+Spring/*/!**/src/test/**
+
+
+### IntelliJ IDEA ###
+Spring/*/.idea
+Spring/*/*.iws
+Spring/*/*.iml
+Spring/*/*.ipr
