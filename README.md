@@ -1,2 +1,2 @@
-# Virtusa-Training
+# Virtusa Training
 Virtusa Java LP Training Assignments
