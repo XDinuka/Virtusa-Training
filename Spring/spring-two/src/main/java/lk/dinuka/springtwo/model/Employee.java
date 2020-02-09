@@ -13,9 +13,16 @@ public class Employee {
     Integer id;
     String name;
     String location;
-    @Cascade(value = org.hibernate.annotations.CascadeType.ALL)
-    @OneToMany(mappedBy = "employee")
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+    Address address;
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     List<Telephone> telephones;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            inverseJoinColumns = {@JoinColumn(name = "employee_id",referencedColumnName = "id")},
+            joinColumns  = {@JoinColumn(name = "project_id",referencedColumnName = "id")}
+    )
+    List<Project> projects;
 
     public Employee() {
     }
@@ -47,5 +54,29 @@ public class Employee {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<Telephone> getTelephones() {
+        return telephones;
+    }
+
+    public void setTelephones(List<Telephone> telephones) {
+        this.telephones = telephones;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 }
