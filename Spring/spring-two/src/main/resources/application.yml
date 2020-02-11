@@ -10,4 +10,4 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: create
 server:
-  port: 8080
+  port: 5000

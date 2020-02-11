@@ -1,5 +1,7 @@
 package lk.dinuka.springtwo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class Project {
     Integer id;
     String name;
     @ManyToMany(mappedBy = "projects")
+    @JsonIgnore
     List<Employee> employees;
 
     public Project() {

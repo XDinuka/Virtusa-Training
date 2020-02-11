@@ -1,6 +1,7 @@
 package lk.dinuka.springtwo.controller;
 
 import lk.dinuka.springtwo.model.Employee;
+import lk.dinuka.springtwo.model.Telephone;
 import lk.dinuka.springtwo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,8 @@ public class Employees {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public Employee save(@RequestBody Employee employee) {
+        if(employee.getTelephones()!=null)
+        employee.getTelephones().stream().forEach(tp->tp.setEmployee(employee));
         return employeeService.save(employee);
     }
 
@@ -29,8 +32,4 @@ public class Employees {
         return employeeService.findById(id).get();
     }
 
-    @RequestMapping("/welcome")
-    public String welcome() {
-        return "Welcome";
-    }
 }

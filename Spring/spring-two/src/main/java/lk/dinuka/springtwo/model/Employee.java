@@ -1,6 +1,7 @@
 package lk.dinuka.springtwo.model;
 
-import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,14 +14,14 @@ public class Employee {
     Integer id;
     String name;
     String location;
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     Address address;
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
     List<Telephone> telephones;
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            inverseJoinColumns = {@JoinColumn(name = "employee_id",referencedColumnName = "id")},
-            joinColumns  = {@JoinColumn(name = "project_id",referencedColumnName = "id")}
+    @JoinTable( name = "employee_projects",
+            inverseJoinColumns = {@JoinColumn(name = "project_id",referencedColumnName = "id")},
+            joinColumns  = {@JoinColumn(name = "employee_id",referencedColumnName = "id")}
     )
     List<Project> projects;
 

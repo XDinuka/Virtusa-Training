@@ -1,5 +1,7 @@
 package lk.dinuka.springtwo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,14 +13,10 @@ public class Telephone {
     String number;
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     Employee employee;
 
     public Telephone() {
-    }
-
-    public Telephone(String number, Employee employee) {
-        this.number = number;
-        this.employee = employee;
     }
 
     public Integer getId() {

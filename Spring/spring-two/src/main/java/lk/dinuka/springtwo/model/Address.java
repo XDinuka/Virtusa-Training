@@ -1,5 +1,7 @@
 package lk.dinuka.springtwo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,19 +10,18 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    String row_one;
-    String row_two;
-    String row_three;
-    @OneToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    String road;
+    String city;
+    @OneToOne(mappedBy = "address")
+    @JsonIgnore
     Employee employee;
 
     public Address() {
     }
 
-    public Address(String row_one, String row_two) {
-        this.row_one = row_one;
-        this.row_two = row_two;
+    public Address(String road, String city) {
+        this.road = road;
+        this.city = city;
     }
 
     public Integer getId() {
@@ -31,27 +32,27 @@ public class Address {
         this.id = id;
     }
 
-    public String getRow_one() {
-        return row_one;
+    public String getRoad() {
+        return road;
     }
 
-    public void setRow_one(String row_one) {
-        this.row_one = row_one;
+    public void setRoad(String road) {
+        this.road = road;
     }
 
-    public String getRow_two() {
-        return row_two;
+    public String getCity() {
+        return city;
     }
 
-    public void setRow_two(String row_two) {
-        this.row_two = row_two;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getRow_three() {
-        return row_three;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setRow_three(String row_three) {
-        this.row_three = row_three;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }
