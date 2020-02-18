@@ -1,0 +1,16 @@
+{
+  "name":"Dinuka",
+  "location":"Maharagama",
+  "address":{
+    "road":"Piliyandala Road",
+    "city":"Maharagama"
+  },
+  "telephones":[
+    {"number":"0112233445"},
+    {"number":"0117873848"}
+  ],
+  "projects":[
+    {"name":"abc"},
+    {"name":"fvd"}
+  ]
+}
