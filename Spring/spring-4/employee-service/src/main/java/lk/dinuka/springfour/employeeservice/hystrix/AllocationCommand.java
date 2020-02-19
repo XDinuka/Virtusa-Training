@@ -1,7 +1,6 @@
 package lk.dinuka.springfour.employeeservice.hystrix;
 
 import lk.dinuka.springfour.employeeservice.model.Allocation;
-import lk.dinuka.springfour.employeeservice.model.Employee;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import org.springframework.http.HttpEntity;
@@ -24,10 +23,11 @@ public class AllocationCommand extends HystrixCommand<Allocation[]> {
 
     @Override
     protected Allocation[] run() throws Exception {
-        ResponseEntity<Allocation[]> responseEntity;
-        HttpEntity<String> httpEntity = new HttpEntity<>("", httpHeaders);
-        responseEntity = restTemplate.exchange("http://allocation/allocations/findByEmployee/" + employee_id, HttpMethod.GET, httpEntity, Allocation[].class);
-        return responseEntity.getBody();
+
+            ResponseEntity<Allocation[]> responseEntity;
+            HttpEntity<String> httpEntity = new HttpEntity<>("", httpHeaders);
+            responseEntity = restTemplate.exchange("http://allocation/allocations/findByEmployee/" + employee_id, HttpMethod.GET, httpEntity, Allocation[].class);
+            return responseEntity.getBody();
     }
 
     @Override
