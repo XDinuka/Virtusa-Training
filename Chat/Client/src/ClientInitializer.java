@@ -1,17 +1,15 @@
 import pojo.InitMessage;
 import pojo.SimpleMessage;
 
-import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
-import java.net.Socket;
 
 public class ClientInitializer {
 
     public static void initialize(String ip,Integer port,InitMessage initMessage){
 
-        System.setProperty("javax.net.ssl.trustStore", "/home/dinuka/Desktop/ssl/ca/ClientKeyStore.jks");
+        System.setProperty("javax.net.ssl.trustStore", "D:/Desktop/ssl/ca/ClientKeyStore.jks");
         System.setProperty("javax.net.ssl.trustStorePassword", "123456");
 
 

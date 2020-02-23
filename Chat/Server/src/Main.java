@@ -1,7 +1,5 @@
-import javax.net.ServerSocketFactory;
 import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLServerSocketFactory;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Main {
@@ -12,7 +10,7 @@ public class Main {
 
     public static void startServer() {
         try {
-            System.setProperty("javax.net.ssl.keyStore", "/home/dinuka/Desktop/ssl/keys/ServerKeyStore.jks");
+            System.setProperty("javax.net.ssl.keyStore", "D:/Desktop/ssl/keys/DebKeyStore.jks");
             System.setProperty("javax.net.ssl.keyStorePassword", "123456");
             System.setProperty("javax.net.debug", "ssl:record");
 
