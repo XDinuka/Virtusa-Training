@@ -33,10 +33,13 @@ public class RequestHandler extends Thread {
 
         try {
             while (continueLoop) {
-                Object o = objectInputStream.readObject();
+                try {
+                    Object o = objectInputStream.readObject();
+                    handleChatMessage(o);
+                }catch (NullPointerException e){
 
+                }
 
-                handleChatMessage(o);
             }
 
 
@@ -52,7 +55,6 @@ public class RequestHandler extends Thread {
 
     private void sendMessages(List<IncomingMessage> messages) {
         try {
-            System.out.println(messages.size() + username);
             messages.stream().forEach(message -> {
                 try {
                     objectOutputStream.writeObject(message);

@@ -2,6 +2,8 @@ import pojo.InitMessage;
 import pojo.SimpleMessage;
 
 import javax.net.SocketFactory;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.net.Socket;
 
@@ -9,13 +11,20 @@ public class ClientInitializer {
 
     public static void initialize(String ip,Integer port,InitMessage initMessage){
 
-        SocketFactory socketFactory = SocketFactory.getDefault();
+        System.setProperty("javax.net.ssl.trustStore", "/home/dinuka/Desktop/ssl/ca/ClientKeyStore.jks");
+        System.setProperty("javax.net.ssl.trustStorePassword", "123456");
+
+
+        SSLSocketFactory sslSocketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
 
         try {
-            Socket socket =  socketFactory.createSocket(ip, port);
+            SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(ip, port);
 
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+            sslSocket.startHandshake();
+
+
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(sslSocket.getOutputStream());
+            ObjectInputStream objectInputStream = new ObjectInputStream(sslSocket.getInputStream());
 
             objectOutputStream.writeObject(initMessage);
             objectOutputStream.flush();
@@ -25,10 +34,10 @@ public class ClientInitializer {
 
             if(simpleMessage.getMessage().equals("connected")){
                 System.out.println("Connected");
-                new InputResolver(socket,objectOutputStream);
-                new ResponseResolver(socket,objectInputStream);
+                new InputResolver(sslSocket,objectOutputStream);
+                new ResponseResolver(sslSocket,objectInputStream);
             }else{
-                socket.close();
+                sslSocket.close();
                 System.out.println("Username is taken. Try another");
                 Main.start();
             }
