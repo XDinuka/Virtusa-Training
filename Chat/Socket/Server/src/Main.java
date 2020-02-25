@@ -10,7 +10,7 @@ public class Main {
 
     public static void startServer() {
         try {
-            System.setProperty("javax.net.ssl.keyStore", "D:/Desktop/ssl/keys/DebKeyStore.jks");
+            System.setProperty("javax.net.ssl.keyStore", "/home/user/Desktop/training/Virtusa-Training/Chat/ssl/keys/DebKeyStore.jks");
             System.setProperty("javax.net.ssl.keyStorePassword", "123456");
             System.setProperty("javax.net.debug", "ssl:record");
 

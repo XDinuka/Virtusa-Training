@@ -9,7 +9,7 @@ public class ClientInitializer {
 
     public static void initialize(String ip,Integer port,InitMessage initMessage){
 
-        System.setProperty("javax.net.ssl.trustStore", "D:/Desktop/ssl/ca/ClientKeyStore.jks");
+        System.setProperty("javax.net.ssl.trustStore", "/home/user/Desktop/training/Virtusa-Training/Chat/ssl/ca/ClientKeyStore.jks");
         System.setProperty("javax.net.ssl.trustStorePassword", "123456");
 
 
